@@ -1,4 +1,23 @@
-<p><%= personal_message.body %></p>
-<p>at <strong><%= personal_message.created_at %></strong><br>
-  by <strong><%= personal_message.user.email %></strong></p>
-<hr>
+<div style="width: 50%; margin: auto;">
+	<% @conversation.personal_messages.each do |personal_message| %>
+
+		<% if personal_message.user.email == current_user.email %>
+			<div align="right">
+				<p><strong><%= personal_message.created_at.strftime("%dth of %B at %H:%M") %></strong><br>
+				<div id='sent'>
+					<p><%= personal_message.body %></p>
+		  		by <strong><%= personal_message.user.email %></strong></p>
+		  	</div>
+		  </div>	
+		<% else %>
+			<div align="left">
+				<p><strong><%= personal_message.created_at.strftime("%dth of %B at %H:%M") %></strong><br>
+				<div id='recieved'>
+					<p><%= personal_message.body %></p>
+		  		by <strong><%= personal_message.user.email %></strong></p>
+		  	</div>
+		  </div>		 
+		<% end %>  		
+		<hr> 
+	<% end -%>	
+</div> 

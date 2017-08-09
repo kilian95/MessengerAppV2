@@ -1,15 +1,27 @@
-<h1>Chatting with <%= @conversation.with(current_user).email %></h1>
+<div align='center'>
+	<h1>Chatting with <%= @conversation.with(current_user).email %></h1>
+</div>	
 
 <div id="conversation-main">
   <div id="conversation-body">
-    <%= render @conversation.personal_messages %>
+    <%= render 'personal_messages/personal_message' %>
   </div>
 
-  <%= form_for @personal_message do |f| %>
-    <%= hidden_field_tag 'conversation_id', @conversation.id %>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-
-    <%= f.submit %>
-  <% end %>
+  <div id='message_form'>
+	  <%= form_for @personal_message do |f| %>
+	    <%= hidden_field_tag 'conversation_id', @conversation.id %>
+	    <%= f.text_area :body, style: 'width:100%;'%>
+	    <%= f.submit "Send" %>
+	  <% end %>
+	</div>  
 </div>
+
+<script type="text/javascript">
+	
+	$(window).load(function() {
+  		$("html, body").animate({ scrollTop: $(document).height() }, 1000);
+	});
+
+
+</script>
+
