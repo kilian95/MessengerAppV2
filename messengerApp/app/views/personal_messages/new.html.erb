@@ -4,7 +4,7 @@
   <%= hidden_field_tag 'receiver_id', @receiver.id %>
 
   <%= f.label :body %>
-  <%= f.text_area :body %>
+  <%= f.text_area :body data: {textarea: "message"} %>
 
-  <%= f.submit %>
+   <%= f.submit "send", class: "btn btn-primary", style: "display: none", data: {send: "message"}%>
 <% end %>
